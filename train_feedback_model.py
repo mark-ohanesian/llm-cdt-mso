@@ -7,10 +7,11 @@ from sklearn.pipeline import Pipeline
 # Sample training data with explicit category labels
 training_data = [
     {"text": "Great website, very helpful!", "category": "kudos"},
-    {"text": "I can't find the information I need.", "category": "problem"},
-    {"text": "How do I apply for a permit?", "category": "question"},
-    {"text": "This page is broken, please fix it.", "category": "problem"},
     {"text": "Excellent service, thanks!", "category": "kudos"},
+    {"text": "The website is ok, it's running very slow.", "category": "problem"},
+    {"text": "I can't find the information I need.", "category": "problem"},
+    {"text": "This page is broken, please fix it.", "category": "problem"},
+    {"text": "How do I apply for a permit?", "category": "question"},
     {"text": "Who should I contact for support?", "category": "question"},
 ]
 
@@ -46,7 +47,8 @@ if __name__ == "__main__":
         "This is confusing, I need help.",
         "Great work, I love it!",
         "Where do I find my application ID?",
-        "The page is not loading."
+        "The page is not loading.",
+        "The website is slow and I think it is just ok for my needs.",
     ]
     
     for feedback in test_feedbacks:
