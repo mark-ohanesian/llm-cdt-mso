@@ -4,17 +4,19 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import Pipeline
 
-# Sample training data (you can expand this later)
-feedback_samples = [
-    "Great website, very helpful!",  # Kudos
-    "I can't find the information I need.",  # Problem
-    "How do I apply for a permit?",  # Question
-    "This page is broken, please fix it.",  # Problem
-    "Excellent service, thanks!",  # Kudos
-    "Who should I contact for support?",  # Question
+# Sample training data with explicit category labels
+training_data = [
+    {"text": "Great website, very helpful!", "category": "kudos"},
+    {"text": "I can't find the information I need.", "category": "problem"},
+    {"text": "How do I apply for a permit?", "category": "question"},
+    {"text": "This page is broken, please fix it.", "category": "problem"},
+    {"text": "Excellent service, thanks!", "category": "kudos"},
+    {"text": "Who should I contact for support?", "category": "question"},
 ]
 
-categories = ["kudos", "problem", "question", "problem", "kudos", "question"]
+# Separate text samples and categories
+feedback_samples = [item["text"] for item in training_data]
+categories = [item["category"] for item in training_data]
 
 # Create a pipeline: text vectorization + Naïve Bayes model
 model_pipeline = Pipeline([
@@ -40,5 +42,12 @@ def classify_feedback(user_input):
 
 # Example usage
 if __name__ == "__main__":
-    test_feedback = "I need help with my application."
-    print(f"Feedback: {test_feedback}\nClassified as: {classify_feedback(test_feedback)}")
+    test_feedbacks = [
+        "This is confusing, I need help.",
+        "Great work, I love it!",
+        "Where do I find my application ID?",
+        "The page is not loading."
+    ]
+    
+    for feedback in test_feedbacks:
+        print(f"Feedback: '{feedback}' → Classified as: {classify_feedback(feedback)}")
